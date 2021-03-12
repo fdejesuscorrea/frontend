@@ -1,0 +1,47 @@
+<div id="regForm" style="display:none">
+    <p>En este formulario no se hace comprobacion de tipos ni de buena composicion de los datos ingresados.</p>
+    <form style="width: 800px;" >
+        <fieldset style="float: right;width: 400px;">
+            <label for="carDetail" class="col-sm-5 col-form-label">Detalles del Auto</label>
+            <div class="col-sm-10">
+                <textarea type="text" class="form-control" rows="3" name="carDetail" [(ngModel)]="carInfo.carDetail" id="carDetail" ></textarea>
+            </div>
+            <label for="repairDetail" class="col-sm-8 col-form-label">Detalles de la Reparacion</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" name="repairDetail" [(ngModel)]="carInfo.repairDetail" id="repairDetail" ></textarea>
+            </div>
+        </fieldset>
+        <fieldset style="width: 400px;">
+            <label for="licensePlate" class="col-sm-5 col-form-label">Placa (aaa-###)</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="licensePlate"[(ngModel)]="carInfo.licensePlate" maxlength="7" id="licensePlate" >
+            </div>
+            <label for="carBrand" class="col-sm-2 col-form-label">Marca</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="carBrand" [(ngModel)]="carInfo.carBrand" id="carBrand" >
+            </div>
+            <label for="model" class="col-sm-2 col-form-label">Modelo</label>
+            <div class="col-sm-10">
+                <input maxlength="4" class="form-control" name="model" [(ngModel)]="carInfo.carModel" id="model" >
+            </div>
+        </fieldset>
+       
+        
+        <br>
+        <div>
+            <fieldset>
+                <div class="form-group ml-auto">
+                    <label for="exampleInputFile">Subir Foto</label>
+                    <input #carImage enctype="multipart/form-data" type="file" class="form-control-file" id="carImage" name="carImage"  aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Seleccione aqui la foto del vehiculo</small>
+                  </div>
+            </fieldset>
+            
+            <div>
+                
+            <button type="submit" (click)="enterCar()" class="btn-primary">Crear</button>
+            </div>
+        </div>
+    </form>   
+    <br>
+</div>

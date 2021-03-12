@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="container mr-auto">
+        <br>
+        <a class="btn btn-primary" id="addButton" style="display:block" (click)="showRegForm()">Añadir Auto</a>
+        
+    </div>
+    <div id="regForm" style="display:none">
+        <p>En este formulario no se hace comprobacion de tipos ni de buena composicion de los datos ingresados.</p>
+        <form onkeydown="return event.key != 'Enter';" onsubmit="this.reset()" style="width: 800px;" id="form">
+            <fieldset style="float: left;width: 400px;">
+                <label for="carDetail" id="cad" class="col-sm-5 col-form-label">Detalles del Auto</label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" rows="3" name="carDetail" [(ngModel)]="carInfo.carDetail" id="carDetail" ></textarea>
+                </div>
+                <label for="repairDetail" id="red" class="col-sm-8 col-form-label">Detalles de la Reparacion</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="repairDetail" [(ngModel)]="carInfo.repairDetail" id="repairDetail" ></textarea>
+                </div>
+            </fieldset>
+            <fieldset style="width: 400px;">
+                <label for="licensePlate" id ="lip"class="col-sm-5 col-form-label">Placa (aaa-###)</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="licensePlate"  [(ngModel)]="carInfo.licensePlate" maxlength="7" id="licensePlate" >
+                </div>
+                <label for="carBrand" id="cab" class="col-sm-5 col-form-label">Marca</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="carBrand" [(ngModel)]="carInfo.carBrand" id="carBrand" >
+                </div>
+                <label for="model" id="cam" class="col-sm-5 col-form-label">Modelo</label>
+                <div class="col-sm-10">
+                    <input maxlength="4" class="form-control" name="model" [(ngModel)]="carInfo.carModel" id="model" >
+                </div>
+            </fieldset>
+           
+            
+            <br>
+            <div>
+                <fieldset>
+                    <div class="form-group ml-auto">
+                        <label for="exampleInputFile">Subir Foto</label>
+                        <input accept="image/*"  #carImage enctype="multipart/form-data" type="file" class="form-control-file" id="carImage" name="carImage"  aria-describedby="fileHelp">
+                        <small id="fileHelp" class="form-text text-muted">Seleccione aqui la foto del vehiculo</small>
+                      </div>
+                      <a class="btn btn-primary" (click)="findImage()" id="info"></a>
+                </fieldset>
+                <br>
+                <div>
+                    
+                <button id="confirmCreate" type="submit" (click)="create()" class="btn-primary">Crear</button>
+                <button  id="confirmEdit" (click)="update()" class="btn-success" style="display:none;">Editar</button>
+                <button  id="cancelEdit" (click)="showUpdate(0)" class="btn-danger" style="display:none;">Cancelar</button>
+
+                </div>
+            </div>
+        </form>   
+        <br>
+    </div>
+    <table class="table table-hover">
+        <thead class="">
+            <tr>
+                <th scope="col"style="" >Placa</th>
+                <th scope="col" style="">Marca</th>
+                <th scope="col"style="">Modelo</th>
+                <th scope="col" style="">Detalles adicionales</th>
+                <th scope="col" style="">Detalle Reparacion</th>
+                <th scope="col" style="">Costo</th>
+                <th scope="col" style="">Foto</th>
+                <th scope="col" style="">edit</th>
+                <th scope="col" style="width: 10px;">del</th>
+              </tr>
+        </thead>
+        <tbody id="tbody" >
+            
+        </tbody>
+            <tr *ngFor="let car of cars" [attr.id]="car.id">
+                <td class="licensePlate">{{car.licensePlate}}</td>
+                <td>{{car.carBrand}}</td>
+                <td>{{car.carModel}}</td>
+                <td>{{car.carDetail}}</td>
+                <td>{{car.repairDetail}}</td>
+                <td>{{car.repairCost}}</td>
+                <td><button class="btn btn-info" (click)="findImage()">&#9991;</button></td>
+                <td><a (click)="showUpdate(car.id)" class="btn btn-success">&#9998;</a></td>
+                <td><a (click)="delete(car.id)" class="btn btn-danger">&#10006;</a></td>
+            </tr>            
+            <div class="container" id =image>
+
+            </div>
+            
+    </table>
+    
+    <div class="row">
+        
+        <div class="form-group ml-auto">
+            <label for="exampleInputFile">Subir Excel</label>
+            <input #excelFile enctype="multipart/form-data" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required type="file" class="form-control-file" name="excelFile" id="excelFile" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">Tambien puede ingresar un archivo excel</small>
+            <a (click)="uploadFile()" id="load" name="load" class="btn btn-primary">Cargar</a>
+          </div>
+    </div>
+</div>
