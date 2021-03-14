@@ -85,13 +85,15 @@ export class CarsComponent implements OnInit {
       }
       this.uploadService.uploadCars(formData).subscribe(
         (res:any)=>{
-          this.initCars();
-          console.log(res.message);
-          this.initCars();
-          console.log(res.status);
-          this.initCars();
+        this.initCars();
+        this.initCars();
+        this.initCars();
         }
       );
+      this.initCars();
+        this.initCars();
+        this.initCars();
+
   }
   findImage(){
     alert("funcionalidd no incluida dentro de los criterios");
@@ -108,17 +110,13 @@ export class CarsComponent implements OnInit {
     }
   }
 update(){
-
-  
   const {licensePlate,carBrand,carModel,carDetail,repairDetail} = this.carInfo;
   if(this.imagen){
     this.carImage = this.imagen.nativeElement.files;
-
    }
   const formData = new FormData();
   if(this.carImage){
     formData.append("file",this.carImage[0]);
-
   }
   if(licensePlate){
     formData.append("licensePlate",licensePlate);
@@ -135,7 +133,6 @@ update(){
   if(repairDetail){
     formData.append("repairDetail",repairDetail);
   }
-  
     this.regFormToEditForm();
     this.showRegForm();
     this.flag=!this.flag;
